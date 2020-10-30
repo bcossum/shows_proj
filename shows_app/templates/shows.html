@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>All Shows</title>
+</head>
+<body>
+  <div id='container'>
+    <h1>All Shows</h1>
+    <div id='content'>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Network</th>
+          <th>Release Date</th>
+          <th>Actions</th>
+        </tr>
+        {% for show in all_shows %}
+          <tr>
+            <td class="first">{{show.id}}</td>
+            <td>{{show.title}}</td>
+            <td>{{show.networks.name}}</td>
+            <td>{{show.release_date}}</td>
+            <td>
+              <a href="/shows/{{show.id}}">Show</a> | 
+              <a href="/shows/{{show.id}}/edit">Edit</a> | 
+              <a href="/shows/{{show.id}}/delete" onClick="return confirm('Are you sure you would like to delete {{show.name}}?')">Delete</a>
+            </td>
+          </tr>
+        {% endfor %}
+        
+      </table>
+
+      <a href="/shows/new">Add a New Show</a>
+    </div>
+  </div>
+{% comment %} Show All Networks{% endcomment %}
+
+  {% comment %} <p>
+    {% for network in all_networks %}
+      {{network.id}} <br>
+      {{network.name}} <br>
+    {% endfor %}
+  </p> {% endcomment %}
+
+</body>
+</html>
+
